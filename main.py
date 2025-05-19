@@ -2,16 +2,20 @@ import cv2
 import mediapipe as mp
 import time
 import HandTracker as ht
+import PoseTracker as pt
 
 
 previousTime =0
 currentTime = 0
 cap = cv2.VideoCapture(0)
-detector = ht.HandDetector()
+detector = ht.handDetector()
+detector2 = pt.poseDetector()
 while True:
     ret, frame = cap.read()
-    frame = detector.findHands(frame)
-    lmList = detector.findPosition(frame)
+    #frame = detector.findHands(frame)
+    #lmList = detector.findPosition(frame)
+    frame =detector2.findPose(frame)
+    lmList = detector2.findPosition(frame)
     if len(lmList) != 0:
         print(lmList[4])
     currentTime = time.time()
