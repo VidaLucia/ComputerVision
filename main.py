@@ -11,21 +11,23 @@ cap = cv2.VideoCapture(0)
 handDetector = ht.HandDetector()
 poseDetector = pt.PoseDetector()
 faceDetector = ft.FaceDetector()
-
+option = "x"
 while True:
     ret, frame = cap.read()
     if not ret:
         break
 
     # Uncomment any one detector below to test:
-
-    # frame = handDetector.findHands(frame)
-    # lmList = handDetector.findPosition(frame)
-
-    # frame = poseDetector.findPose(frame)
-    # lmList = poseDetector.findPosition(frame)
-
-    frame, bboxes = faceDetector.findFaces(frame)
+    if option == "h":
+        frame = handDetector.findHands(frame)
+        lmList = handDetector.findPosition(frame)
+    elif option == "p":
+        frame = poseDetector.findPose(frame)
+        lmList = poseDetector.findPosition(frame)
+    elif option == "f":
+        frame, bboxes = faceDetector.findFaces(frame)
+    else:
+        break
 
     # Calculate and display FPS
     currentTime = time.time()
