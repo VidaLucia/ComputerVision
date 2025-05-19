@@ -4,14 +4,15 @@ import time
 import HandTracker as ht
 import PoseTracker as pt
 import FaceTracker as ft
-
+import FaceMeshTracker as fmt
 previousTime = 0
 cap = cv2.VideoCapture(0)
 
 handDetector = ht.HandDetector()
 poseDetector = pt.PoseDetector()
 faceDetector = ft.FaceDetector()
-option = "x"
+faceMeshDetector = fmt.FaceMeshTracker()
+option = "fm"
 while True:
     ret, frame = cap.read()
     if not ret:
@@ -26,6 +27,9 @@ while True:
         lmList = poseDetector.findPosition(frame)
     elif option == "f":
         frame, bboxes = faceDetector.findFaces(frame)
+    elif option == "fm":
+        frame = faceMeshDetector.findFaceMesh(frame)
+        lmList = faceMeshDetector.findPosition(frame)
     else:
         break
 

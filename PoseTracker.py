@@ -36,7 +36,7 @@ class PoseDetector:
 
         return frame
 
-    def findPosition(self, frame, draw=True):
+    def findPosition(self, frame,frameNo = 0, draw=True):
         """
         Finds all pose landmark positions and optionally draws the first landmark.
 
