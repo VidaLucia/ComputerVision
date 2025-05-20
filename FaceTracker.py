@@ -82,31 +82,3 @@ class FaceDetector:
         # Full rectangle
         cv2.rectangle(frame, bbox, (255, 0, 255), rt)
 
-def main():
-    cap = cv2.VideoCapture(0)
-    detector = FaceDetector()
-    previousTime = 0
-
-    while True:
-        success, frame = cap.read()
-        frame, bboxes = detector.findFaces(frame)
-
-        # FPS Calculation
-        currentTime = time.time()
-        fps = 1 / (currentTime - previousTime)
-        previousTime = currentTime
-
-        # Display FPS
-        cv2.putText(frame, f'FPS: {int(fps)}', (20, 70),
-                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-
-        # Show output
-        cv2.imshow("Face Detection", frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-
-    cap.release()
-    cv2.destroyAllWindows()
-
-if __name__ == "__main__":
-    main()

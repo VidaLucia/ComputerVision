@@ -12,7 +12,7 @@ handDetector = ht.HandDetector()
 poseDetector = pt.PoseDetector()
 faceDetector = ft.FaceDetector()
 faceMeshDetector = fmt.FaceMeshTracker()
-option = "fm"
+option = "p"
 while True:
     ret, frame = cap.read()
     if not ret:
