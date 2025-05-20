@@ -54,5 +54,5 @@ class PoseDetector:
                 cx, cy = int(lm.x * w), int(lm.y * h)
                 lmList.append([id, cx, cy])
                 if draw:
-                    cv2.circle(frame, (cx, cy), 15, (255, 0, 0), cv2.FILLED)
+                    cv2.circle(frame, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
         return lmList
